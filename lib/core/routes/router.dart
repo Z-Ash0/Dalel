@@ -9,8 +9,8 @@ final router = GoRouter(
       builder: (context, state) => const SplashView(),
     ),
     GoRoute(
-      path: '/OnBoarding',
-      builder: (context, state) => const OnBoardingView(),
+      path: OnBoardingView.path,
+      builder: (context, state) => OnBoardingView(),
     )
   ],
 );

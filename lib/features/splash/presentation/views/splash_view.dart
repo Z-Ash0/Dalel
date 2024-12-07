@@ -1,6 +1,7 @@
 import 'package:dalel_app/core/functions/custom_navigator.dart';
 import 'package:dalel_app/core/utils/app_strings.dart';
 import 'package:dalel_app/core/utils/app_text_styles.dart';
+import 'package:dalel_app/features/onBoarding/presentation/views/on_boarding_view.dart';
 import 'package:flutter/material.dart';
 
 class SplashView extends StatefulWidget {
@@ -13,10 +14,7 @@ class SplashView extends StatefulWidget {
 class _SplashViewState extends State<SplashView> {
   @override
   void initState() {
-    Future.delayed(const Duration(seconds: 2));
-    setState(() {
-      customNavigator(context, '/OnBoardingView');
-    });
+    delayedSplashScreen(context);
     super.initState();
   }
 
@@ -31,4 +29,11 @@ class _SplashViewState extends State<SplashView> {
       ),
     );
   }
+}
+
+void delayedSplashScreen(context) {
+  Future.delayed(
+    const Duration(seconds: 2),
+    () => customReplacementNavigator(context, OnBoardingView.path),
+  );
 }

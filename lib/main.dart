@@ -1,17 +1,8 @@
 import 'package:dalel_app/core/routes/router.dart';
-import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(
-    DevicePreview(
-      enabled: true,
-      tools: const [
-        ...DevicePreview.defaultTools,
-      ],
-      builder: (context) => const Dalel(),
-    ),
-  );
+  runApp(const Dalel());
 }
 
 class Dalel extends StatelessWidget {
@@ -21,6 +12,7 @@ class Dalel extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       routerConfig: router,
+      debugShowCheckedModeBanner: false,
     );
   }
 }
