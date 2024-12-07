@@ -3,10 +3,16 @@ import 'package:dalel_app/core/utils/app_text_styles.dart';
 import 'package:flutter/material.dart';
 
 class CustomButton extends StatelessWidget {
-  const CustomButton({super.key, required this.text, this.color, this.bgColor});
+  const CustomButton(
+      {super.key,
+      required this.text,
+      this.color,
+      this.bgColor,
+      required this.onPressed});
   final String text;
   final Color? color;
   final Color? bgColor;
+  final VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +26,7 @@ class CustomButton extends StatelessWidget {
           ),
           backgroundColor: bgColor ?? AppColors.primaryColor,
         ),
-        onPressed: () {},
+        onPressed: onPressed,
         child: Text(
           text,
           style: AppTextStyles.poppinsW500Size24

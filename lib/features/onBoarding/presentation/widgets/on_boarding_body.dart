@@ -4,15 +4,18 @@ import 'package:dalel_app/features/onBoarding/presentation/widgets/custom_smooth
 import 'package:flutter/widgets.dart';
 
 class OnBoardingBody extends StatelessWidget {
-  const OnBoardingBody({super.key, required this.pageController});
+  const OnBoardingBody(
+      {super.key, required this.pageController, required this.onPageChanged});
   final PageController pageController;
   final List<OnBoardingModel> list = onBoardingList;
+  final ValueChanged<int> onPageChanged;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 1000,
       child: PageView.builder(
+        onPageChanged: onPageChanged,
         controller: pageController,
         physics: const BouncingScrollPhysics(),
         itemBuilder: (context, index) => Column(
@@ -27,7 +30,7 @@ class OnBoardingBody extends StatelessWidget {
             const SizedBox(height: 32),
             CustomSmoothIndicator(
               pageController: pageController,
-              index: 3,
+              index: list.length,
             ),
             const SizedBox(height: 64),
             Text(
