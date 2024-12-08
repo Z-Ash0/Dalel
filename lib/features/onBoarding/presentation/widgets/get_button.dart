@@ -4,6 +4,7 @@ import 'package:dalel_app/core/utils/app_text_styles.dart';
 import 'package:dalel_app/core/widgets/custom_button.dart';
 import 'package:dalel_app/features/auth/presentation/views/sign_up_view.dart';
 import 'package:dalel_app/features/onBoarding/data/models/on_boarding_model.dart';
+import 'package:dalel_app/features/onBoarding/functions/on_boarding.dart';
 import 'package:flutter/material.dart';
 
 class GetButton extends StatelessWidget {
@@ -24,13 +25,17 @@ class GetButton extends StatelessWidget {
             children: [
               CustomButton(
                 text: AppStrings.createAccount,
-                onPressed: () =>
-                    customReplacementNavigator(context, SignUpView.path),
+                onPressed: () {
+                  saveVisited();
+                  customReplacementNavigator(context, SignUpView.path);
+                },
               ),
               const SizedBox(height: 17),
               InkWell(
-                onTap: () =>
-                    customReplacementNavigator(context, SignUpView.path),
+                onTap: () {
+                  saveVisited();
+                  customReplacementNavigator(context, SignUpView.path);
+                },
                 child: Text(AppStrings.loginNow,
                     style: AppTextStyles.poppinsW500Size24.copyWith(
                         fontWeight: FontWeight.w400,
