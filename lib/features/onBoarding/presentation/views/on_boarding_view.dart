@@ -1,9 +1,7 @@
 import 'package:dalel_app/core/functions/custom_navigator.dart';
-import 'package:dalel_app/core/utils/app_strings.dart';
-import 'package:dalel_app/core/widgets/custom_button.dart';
 import 'package:dalel_app/features/auth/presentation/views/sign_up_view.dart';
-import 'package:dalel_app/features/onBoarding/presentation/models/on_boarding_model.dart';
 import 'package:dalel_app/features/onBoarding/presentation/widgets/custom_navigation_bar.dart';
+import 'package:dalel_app/features/onBoarding/presentation/widgets/get_button.dart';
 import 'package:dalel_app/features/onBoarding/presentation/widgets/on_boarding_body.dart';
 import 'package:flutter/material.dart';
 
@@ -17,7 +15,6 @@ class OnBoardingView extends StatefulWidget {
 
 class _OnBoardingViewState extends State<OnBoardingView> {
   int index = 0;
-  final List<OnBoardingModel> list = onBoardingList;
   late PageController _controller;
   @override
   void initState() {
@@ -41,12 +38,11 @@ class _OnBoardingViewState extends State<OnBoardingView> {
             physics: const BouncingScrollPhysics(),
             children: [
               const SizedBox(height: 40),
-              index == list.length - 1
-                  ? Container()
-                  : CustomNavigationBar(
-                      onTap: () =>
-                          customReplacementNavigator(context, SignUpView.path),
-                    ),
+              CustomNavigationBar(
+                onTap: () =>
+                    customReplacementNavigator(context, SignUpView.path),
+                index: index,
+              ),
               const SizedBox(height: 32),
               OnBoardingBody(
                 pageController: _controller,
@@ -54,26 +50,11 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                   setState(() => index = pageIndex);
                 },
               ),
-              const SizedBox(height: 30),
-              index != list.length - 1
-                  ? CustomButton(
-                      text: AppStrings.next,
-                      onPressed: scrollFun,
-                    )
-                  : CustomButton(
-                      text: AppStrings.createAccount,
-                      onPressed: () =>
-                          customReplacementNavigator(context, SignUpView.path),
-                    ),
+              GetButton(index: index, controller: _controller),
             ],
           ),
         ),
       ),
     );
-  }
-
-  void scrollFun() {
-    _controller.nextPage(
-        duration: const Duration(milliseconds: 500), curve: Curves.easeInOut);
   }
 }
